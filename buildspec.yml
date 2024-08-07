@@ -1,5 +1,5 @@
 version: 0.2
-
+ 
 phases:
   install:
     runtime-versions:
@@ -7,6 +7,9 @@ phases:
     commands:
       - echo Installing dependencies...
       - npm install
+  pre_build:
+    commands:
+      - echo Pre-build phase
   build:
     commands:
       - echo Build started on `date`
@@ -14,6 +17,6 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - "**/*"
+    - '**/*'
   base-directory: build
   discard-paths: yes
