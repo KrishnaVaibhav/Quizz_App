@@ -2,6 +2,7 @@
   "name": "quiz-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@aws-amplify/ui-react": "^6.1.14",
     "@testing-library/jest-dom": "^5.17.0",
@@ -10,6 +11,7 @@
     "aws-amplify": "^6.4.3",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "quiz-app": "file:",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
