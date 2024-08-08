@@ -43,28 +43,30 @@ const UpdateQuiz = () => {
   };
 
   return (
-    <div>
+    <div className="container glass-effect center-div p-5 d-flex flex-column align-items-center">
       <h1>Update a Quiz</h1>
-      <div>
-        <label>Quiz ID: </label>
+      <div className="form-group">
+        <label htmlFor="quizID">Quiz ID:</label>
         <input
           type="text"
+          className="form-control"
+          id="quizID"
           value={quizID}
           onChange={(e) => setQuizID(e.target.value)}
           required
         />
       </div>
-      <div>
-        <label>
-          Questions (format: question,option1,option2,option3,correctOption):{" "}
-        </label>
+      <div className="form-group">
+        <label htmlFor="questions">Questions (format: question,option1,option2,option3,correctOption):</label>
         <textarea
+          className="form-control"
+          id="questions"
           value={questions}
           onChange={(e) => setQuestions(e.target.value)}
           required
         />
       </div>
-      <button onClick={handleUpdateQuiz}>Update Quiz</button>
+      <button className="my-4 btn btn-success" onClick={handleUpdateQuiz}>Update Quiz</button>
       {message && <p>{message}</p>}
     </div>
   );

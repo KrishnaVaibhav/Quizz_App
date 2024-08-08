@@ -32,18 +32,22 @@ const GetQuiz = () => {
     }
   };
 
-  return (
-    <div>
+  return ( 
+    <div className="container glass-effect center-div p-5 text-center d-flex flex-column align-items-center">
       <h1>Get a Quiz</h1>
-      <div>
-        <label>Quiz ID: </label>
+      <div className="form-group" style={{ maxWidth: "200px" }}>
+        <label htmlFor="quizID">Quiz ID:</label>
         <input
           type="text"
+          className="form-control"
+          id="quizID"
           value={quizID}
           onChange={(e) => setQuizID(e.target.value)}
           required
         />
-        <button onClick={handleGetQuiz}>Get Quiz</button>
+        <button className="my-4 btn btn-primary" onClick={handleGetQuiz}>
+          Get Quiz
+        </button>
       </div>
       {message && <p>{message}</p>}
       {quiz && (

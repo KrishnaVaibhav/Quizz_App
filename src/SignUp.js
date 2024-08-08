@@ -41,40 +41,43 @@ const SignUpPage = () => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+    <div className="container center-div p-5 glass-effect">
+      <h2 className="text-center">Sign Up</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+        <div className="form-group">
+          <label>Email</label>
           <input
             type="email"
+            className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="form-group">
+          <label>Password</label>
           <input
             type="password"
+            className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Confirm Password:</label>
+        <div className="form-group">
+          <label>Confirm Password</label>
           <input
             type="password"
+            className="form-control"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="my-3 btn btn-primary">Sign Up</button>
       </form>
-      <p>
+      <p className="text-center">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </div>

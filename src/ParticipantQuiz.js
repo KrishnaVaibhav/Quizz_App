@@ -96,32 +96,41 @@ const ParticipantQuiz = () => {
   };
 
   return (
-    <div>
+    <div className="container glass-effect center-div p-5">
       <h1>Start a Quiz</h1>
-      <div>
-        <label>Participant Name: </label>
+      <div className="form-group">
+        <label>Participant Name:</label>
         <input
           type="text"
+          className="form-control"
           value={participantName}
           onChange={(e) => setParticipantName(e.target.value)}
           required
         />
-        <label>Email: </label>
+      </div>
+      <div className="form-group">
+        <label>Email:</label>
         <input
           type="email"
+          className="form-control"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <label>Quiz ID: </label>
+      </div>
+      <div className="form-group">
+        <label>Quiz ID:</label>
         <input
           type="text"
+          className="form-control"
           value={quizID}
           onChange={(e) => setQuizID(e.target.value)}
           required
         />
-        <button onClick={handleGetQuiz}>Start Quiz</button>
       </div>
+      <button className="my-4 btn btn-primary" onClick={handleGetQuiz}>
+        Start Quiz
+      </button>
       {message && <p>{message}</p>}
       {quiz && (
         <div>
@@ -152,7 +161,9 @@ const ParticipantQuiz = () => {
               </li>
             ))}
           </ul>
-          <button onClick={handleSubmitAnswers}>Submit Answers</button>
+          <button className="my-4 btn btn-primary" onClick={handleSubmitAnswers}>
+            Submit Answers
+          </button>
         </div>
       )}
       {score && (

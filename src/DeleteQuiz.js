@@ -29,18 +29,22 @@ const DeleteQuiz = () => {
   };
 
   return (
-    <div>
+    <div className="container glass-effect center-div p-5 d-flex flex-column align-items-center">
       <h1>Delete a Quiz</h1>
-      <div>
-        <label>Quiz ID: </label>
+      <div className="form-group">
+        <label htmlFor="quizID">Quiz ID:</label>
         <input
           type="text"
+          className="form-control"
+          id="quizID"
           value={quizID}
           onChange={(e) => setQuizID(e.target.value)}
           required
         />
-        <button onClick={handleDeleteQuiz}>Delete Quiz</button>
       </div>
+      <button className="my-4 btn btn-danger" onClick={handleDeleteQuiz}>
+        Delete Quiz
+      </button>
       {message && <p>{message}</p>}
     </div>
   );

@@ -44,49 +44,60 @@ const QuizForm = () => {
   };
 
   return (
-    <div>
-      <h1>Create a Quiz</h1>
+    <div className="container glass-effect center-div p-5 ">
+      <h1 className="text-center">Create a Quiz</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Quiz ID: </label>
+        <div className="mb-3">
+          <label className="form-label">Quiz ID:</label>
           <input
             type="text"
+            className="form-control"
             value={quizID}
             onChange={(e) => setQuizID(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Host ID: </label>
+        <div className="mb-3">
+          <label className="form-label">Host ID:</label>
           <input
             type="text"
+            className="form-control"
             value={hostID}
             onChange={(e) => setHostID(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>
-            Questions (format: question,option1,option2,option3,correctOption):{" "}
+        <div className="mb-3">
+          <label className="form-label">
+            Questions  <br/> 
+            {/* format: question,option1,option2,option3,correctOption */}
+
           </label>
           <textarea
+            className="form-control"
             value={questions}
+            placeholder="Format: question,option1,option2,option3,correctOption"
+            rows={3}
             onChange={(e) => setQuestions(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Quiz Name: </label>
+        <div className="mb-3">
+          <label className="form-label">Quiz Name:</label>
           <input
             type="text"
+            className="form-control"
             value={quizName}
             onChange={(e) => setQuizName(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Create Quiz</button>
+        <div className="mb-3">
+          <button type="submit" className="btn btn-primary">Create Quiz</button>
+        </div>
       </form>
       {message && <p>{message}</p>}
+
     </div>
   );
 };

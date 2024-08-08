@@ -36,25 +36,31 @@ const HostDashboard = () => {
   };
 
   return (
-    <div>
+    <div className="container glass-effect center-div p-5 d-flex flex-column align-items-center">
       <h1>Host Dashboard</h1>
-      <div>
-        <label>Quiz ID: </label>
+      <div className="form-group">
+        <label>Quiz ID:</label>
         <input
           type="text"
+          className="form-control"
           value={quizID}
           onChange={(e) => setQuizID(e.target.value)}
           required
         />
-        <label>Time Limit: </label>
+      </div>
+      <div className="form-group">
+        <label>Time Limit:</label>
         <input
           type="text"
+          className="form-control"
           value={timeLimit}
           onChange={(e) => setTimeLimit(e.target.value)}
           required
         />
-        <button onClick={handleBroadcastQuiz}>Broadcast Quiz</button>
       </div>
+      <button className="my-4 btn btn-primary" onClick={handleBroadcastQuiz}>
+        Broadcast Quiz
+      </button>
       {message && <p>{message}</p>}
     </div>
   );

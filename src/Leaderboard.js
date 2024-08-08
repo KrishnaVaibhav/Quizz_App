@@ -25,13 +25,13 @@ const Leaderboard = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Leaderboard</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul>
+    <div className="container glass-effect center-div p-5">
+      <h2 className="text-center">Leaderboard</h2>
+      {error && <p className="text-danger">{error}</p>}
+      <ul className="list-group">
         {leaderboard.map((entry, index) => (
-          <li key={index}>
-            {entry.participantID}: {entry.score}
+          <li className="list-group-item" key={index}>
+            <span className="fw-bold">{entry.participantID}:</span> {entry.score}
           </li>
         ))}
       </ul>
