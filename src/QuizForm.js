@@ -44,7 +44,7 @@ const QuizForm = () => {
   };
 
   return (
-    <div className="container glass-effect center-div p-5 ">
+    <div className="container glass-effect center-div p-5 mt-5 ">
       <h1 className="text-center">Create a Quiz</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

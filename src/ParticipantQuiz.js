@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useAuth} from "./hooks/useAuth";
 
 const ParticipantQuiz = () => {
   const [participantName, setParticipantName] = useState("");
@@ -8,9 +9,10 @@ const ParticipantQuiz = () => {
   const [answers, setAnswers] = useState([]);
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(60);
-
-  useEffect(() => {
+  const  [timeLeft, setTimeLeft] = useState(60);
+  const {user} = useAuth();
+  console.log("user homeeeeeeeee::", user);
+  useEffect(()   => {
     if (timeLeft > 0 && quiz) {
       const timerId = setInterval(() => {
         setTimeLeft(timeLeft - 1);
@@ -21,7 +23,7 @@ const ParticipantQuiz = () => {
       handleSubmitAnswers();
     }
   }, [timeLeft, quiz]);
-
+  // console.log(useAuth());
   const handleGetQuiz = async () => {
     const data = {
       action: "get_quiz",
