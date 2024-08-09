@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import {useAuth} from "../hooks/useAuth";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import icon from "../images/quiz.png";
 
 const Navb = () => {
     const { user, logout } = useAuth();
@@ -13,7 +14,7 @@ const Navb = () => {
     };
     return (
         <Navbar className=" d-flex justify-content-between mb-5" bg="dark" variant="dark">
-        <Navbar.Brand className="mx-5" href="/">Quizz App</Navbar.Brand>
+        <Navbar.Brand className="mx-5 d-flex align-items-center" href="/"><img className="mx-3" src={icon} alt="icon" width="50" height="50" />Quizz App</Navbar.Brand>
         <Nav className="mx-5">
           { user && <Nav.Link href="/host">Host Dashboard</Nav.Link> }
           <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
