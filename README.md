@@ -99,24 +99,27 @@ This report outlines the architectural decisions and justifications for the AWS 
 1. **AWS CloudWatch** [9]
    1. **Usage**: Monitors the performance of Lambda functions, API Gateway, and other involved services.
    1. **Justification**: Provides logging and monitoring, essential for maintaining application health, debugging, and optimizing performance based on usage data.
-## <a name="_toc173960847"></a>**Alternative Services** 
+<center>
+
 > *Table 2: Alternative services For the Current used services.*
 
-|**Used Service**|**Alternative Service**|
-| :- | :- |
-|AWS Lambda|Amazon EC2|
-|Amazon DynamoDB|Amazon RDS|
-|AWS API Gateway|Elastic Load Balancing|
-|AWS Cognito|Amazon IAM|
-|Amazon SNS|Amazon SES|
-|Amazon S3 + Amazon CloudFront|Amazon EBS|
-|AWS CodeBuild + CodeDeploy + CodePipeline|Jenkins|
-|AWS CloudWatch|Datadog|
-###
-###
-**
+|     Used Service     | Alternative Service |
+| :------------------: | :-----------------: |
+|     AWS Lambda       |     Amazon EC2      |
+|   Amazon DynamoDB    |     Amazon RDS      |
+|  AWS API Gateway     | Elastic Load Balancing |
+|     AWS Cognito      |     Amazon IAM      |
+|     Amazon SNS       |     Amazon SES      |
+| Amazon S3 + Amazon CloudFront |     Amazon EBS      |
+| AWS CodeBuild + CodeDeploy + CodePipeline |     Jenkins      |
+|     AWS CloudWatch   |     Datadog         |
 
---
+
+### 
+###
+
+</center>
+
 
 ### <a name="_toc173960848"></a>**1. AWS Lambda vs. Amazon EC2**
 - **AWS Lambda** [1] automatically manages the compute fleet, offering a serverless architecture that scales on demand without requiring manual intervention. This is particularly beneficial for applications with variable and unpredictable workloads, like a quiz platform, where traffic can spike unpredictably due to new quizzes being released or popular quizzes drawing sudden interest.
@@ -159,23 +162,29 @@ This report outlines the architectural decisions and justifications for the AWS 
 # <a name="_toc173960856"></a>**AWS Well-Architected Framework Application**
 
 ## <a name="_toc173960857"></a>**Architectural Diagram**
-![](Architecure.png)
+<center>
+
+![Cloud Architecture for the Application](Architecure.png)
+
 *Figure 1: Cloud Architecture for the Application.*
+
+</center>
 
 The diagram illustrates the flow of data and interactions between different AWS services and the application components.
 ## <a name="_toc173960858"></a>**Architecture Overview**
 My quiz application employs a serverless architecture, which means that the management, scaling, and patching of servers are handled by AWS, allowing you to focus on application development rather than infrastructure management. This approach is particularly effective in handling variable workloads, such as those experienced by a dynamic quiz platform where user traffic can fluctuate dramatically.
 
 Additionally, the application is structured around microservices, where each service performs a specific function. This modular architecture enhances the scalability and flexibility of the application, making it easier to update and scale parts of the application independently without affecting the entire system.
+
 > *Table 3: Justification of Cloud Architecture Pillars.*
 
-|**Pillar**|**AWS Services**|**Justification for Service Usage**|
-| :- | :- | :- |
-|**Operational Excellence**|AWS Lambda, AWS CloudWatch, AWS CodePipeline, AWS CodeBuild, AWS CodeDeploy|Lambda automates backend processes; CloudWatch monitors operations; CodePipeline, CodeBuild, and CodeDeploy automate deployment.|
-|**Security**|AWS Cognito, AWS IAM, Amazon SNS|Cognito manages user authentication; IAM ensures secure access control; SNS securely sends notifications.|
-|**Reliability**|AWS Lambda, Amazon DynamoDB, Amazon S3, Amazon CloudFront|Lambda and DynamoDB offer scalable, fault-tolerant performance; S3 and CloudFront ensure data availability and distribution.|
-|**Performance Efficiency**|AWS Lambda, Amazon CloudFront, Amazon DynamoDB|Lambda offers efficient compute; CloudFront reduces latency; DynamoDB provides fast data retrieval.|
-|**Cost Optimization**|AWS Lambda, Amazon DynamoDB, Amazon S3|Lambda and DynamoDB use a pay-as-you-go model reducing costs; S3 offers cost-effective storage solutions.|
+|     **Pillar**     |   **AWS Services**   |     **Justification for Service Usage**     |
+| :----------------: | :------------------: | :----------------------------------------: |
+| Operational Excellence | AWS Lambda, AWS CloudWatch, AWS CodePipeline, AWS CodeBuild, AWS CodeDeploy | Lambda automates backend processes; CloudWatch monitors operations; CodePipeline, CodeBuild, and CodeDeploy automate deployment. |
+| Security | AWS Cognito, AWS IAM, Amazon SNS | Cognito manages user authentication; IAM ensures secure access control; SNS securely sends notifications. |
+| Reliability | AWS Lambda, Amazon DynamoDB, Amazon S3, Amazon CloudFront | Lambda and DynamoDB offer scalable, fault-tolerant performance; S3 and CloudFront ensure data availability and distribution. |
+| Performance Efficiency | AWS Lambda, Amazon CloudFront, Amazon DynamoDB | Lambda offers efficient compute; CloudFront reduces latency; DynamoDB provides fast data retrieval. |
+| Cost Optimization | AWS Lambda, Amazon DynamoDB, Amazon S3 | Lambda and DynamoDB use a pay-as-you-go model reducing costs; S3 offers cost-effective storage solutions. |
 ###
 
 
