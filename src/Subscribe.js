@@ -53,7 +53,7 @@ const Subscribe = () => {
       .then((data) => setProfessorDetails(data));
   }, []);
   return (
-    <div className="container glass-effect center-div p-5 d-flex flex-column align-items-center">
+    <div className="container glass-effect center-div p-5 d-flex flex-column align-items-center ">
       <h1>Subscribe</h1>
       <div className="form-group">
         <input
@@ -68,7 +68,7 @@ const Subscribe = () => {
         </button>
       </div>
 
-      <table className="table mt-5">
+      <table className="table mt-5 table-striped rounded-3 overflow-hidden">
         <thead>
           <tr>
             <th>Professor</th>
