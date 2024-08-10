@@ -10,6 +10,7 @@ import Leaderboard from "./Leaderboard";
 import HostDashboard from "./Dashboard";
 import Login from "./Login";
 import Signup from "./SignUp";
+import Subscribe from "./Subscribe";
 import Navb from "./components/Navb";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,33 +19,73 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-
 function App() {
   return (
     <div className="App background">
       <AuthProvider>
-      <Router>
-        <Navb  />
-
+        <Router>
+          <Navb />
           <Routes>
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/" element={<ParticipantQuiz />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/host" element={<ProtectedRoute> <HostDashboard/> </ProtectedRoute>} />
-            <Route path="/quiz" element={<ProtectedRoute> <QuizForm/> </ProtectedRoute>} />
-            <Route path="/getquiz" element={<ProtectedRoute><GetQuiz /></ProtectedRoute>} />
-            <Route path="/deletequiz" element={<ProtectedRoute><DeleteQuiz /></ProtectedRoute>} />
-            <Route path="/updatequiz" element={<ProtectedRoute><UpdateQuiz /></ProtectedRoute>} />
-            <Route path="*" element={<h1 className="badge rounded-pill fs-1 text-bg-danger text-center mt-5"><span class="badge text-bg-warning m-3">404</span> Not Found </h1>} />
+            <Route
+              path="/host"
+              element={
+                <ProtectedRoute>
+                  {" "}
+                  <HostDashboard />{" "}
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/quiz"
+              element={
+                <ProtectedRoute>
+                  {" "}
+                  <QuizForm />{" "}
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/getquiz"
+              element={
+                <ProtectedRoute>
+                  <GetQuiz />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/deletequiz"
+              element={
+                <ProtectedRoute>
+                  <DeleteQuiz />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/updatequiz"
+              element={
+                <ProtectedRoute>
+                  <UpdateQuiz />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/subscribe" element={<Subscribe />} />
+            <Route
+              path="*"
+              element={
+                <h1 className="badge rounded-pill fs-1 text-bg-danger text-center mt-5">
+                  <span class="badge text-bg-warning m-3">404</span> Not Found{" "}
+                </h1>
+              }
+            />
           </Routes>
-
-      </Router>
+        </Router>
       </AuthProvider>
-      </div>
-
+    </div>
   );
 }
-
 
 export default App;

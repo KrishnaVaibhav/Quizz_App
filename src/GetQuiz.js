@@ -49,25 +49,36 @@ const GetQuiz = () => {
           Get Quiz
         </button>
       </div>
-      {message && <p>{message}</p>}
+      <div className="message-box" >
+        {message && <p style={{ backgroundColor: "#db2e2ebf", color: "white", padding: "10px", margin: "10px",  borderRadius: "10px", border: "1px solid black" }}>{message}</p>}
+      </div>
       {quiz && (
         <div>
           <h2>{quiz.quizName}</h2>
-          <ul>
-            {quiz.questions.map((q, index) => (
-              <li key={index}>
-                <p>{q.questionText}</p>
-                <ul>
-                  {q.options.map((option, idx) => (
-                    <li key={idx}>{option}</li>
-                  ))}
-                </ul>
-                <p>
-                  <strong>Correct Answer: {q.correctAnswer}</strong>
-                </p>
-              </li>
-            ))}
-          </ul>
+          <table className="table table-bordered table-striped rounded-3 overflow-hidden table-hover">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Options</th>
+                <th>Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {quiz.questions.map((q, index) => (
+                <tr key={index}>
+                  <td>{q.questionText}</td>
+                  <td>
+                    <ul>
+                      {q.options.map((option, idx) => (
+                        <li key={idx}>{option}</li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>{q.correctAnswer}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

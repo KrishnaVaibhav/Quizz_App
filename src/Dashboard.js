@@ -48,16 +48,7 @@ const HostDashboard = () => {
           required
         />
       </div>
-      <div className="form-group">
-        <label>Time Limit:</label>
-        <input
-          type="text"
-          className="form-control"
-          value={timeLimit}
-          onChange={(e) => setTimeLimit(e.target.value)}
-          required
-        />
-      </div>
+
       <button className="my-4 btn btn-primary" onClick={handleBroadcastQuiz}>
         Broadcast Quiz
       </button>

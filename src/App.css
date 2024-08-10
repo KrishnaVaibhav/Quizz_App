@@ -63,11 +63,21 @@ ul {
 background: rgba(0, 0, 0, 0.34);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.801);
-backdrop-filter: blur(13.8px);
--webkit-backdrop-filter: blur(13.8px);
+backdrop-filter: blur(13px);
+-webkit-backdrop-filter: blur(13px);
 border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+.score-box{
+  background: rgba(0, 0, 0, 0.34);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.801);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  margin: 10px;
+}
 
 .background {
   position: fixed;

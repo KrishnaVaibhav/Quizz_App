@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import {useAuth} from "./hooks/useAuth";
+import React, { useState } from "react";
 
 const ParticipantQuiz = () => {
   const [participantName, setParticipantName] = useState("");
@@ -9,22 +8,20 @@ const ParticipantQuiz = () => {
   const [answers, setAnswers] = useState([]);
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(null);
-  const  [timeLeft, setTimeLeft] = useState(60);
-  const {user} = useAuth();
-  console.log("user homeeeeeeeee::", user);
-  useEffect(()   => {
-    if (timeLeft > 0 && quiz) {
-      const timerId = setInterval(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
+  const [formValidated, setFormValidated] = useState(false);
 
-      return () => clearInterval(timerId);
-    } else if (timeLeft === 0) {
-      handleSubmitAnswers();
-    }
-  }, [timeLeft, quiz]);
-  // console.log(useAuth());
   const handleGetQuiz = async () => {
+    if (!participantName || !email || !quizID) {
+      setMessage("Please fill in all the required fields.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
     const data = {
       action: "get_quiz",
       quizID,
@@ -48,7 +45,7 @@ const ParticipantQuiz = () => {
         setQuiz(result.quiz);
         setAnswers(new Array(result.quiz.questions.length).fill(""));
         setMessage("");
-        setTimeLeft(60);
+        setFormValidated(true);
       } else {
         setMessage(result.error);
       }
@@ -57,7 +54,14 @@ const ParticipantQuiz = () => {
     }
   };
 
-  const handleSubmitAnswers = async () => {
+  const handleSubmitAnswers = async (e) => {
+    e.preventDefault();
+
+    if (!formValidated) {
+      setMessage("Please start the quiz by filling in the required fields.");
+      return;
+    }
+
     const data = {
       action: "submit_answers",
       participantName,
@@ -100,81 +104,91 @@ const ParticipantQuiz = () => {
   return (
     <div className="container glass-effect center-div p-5">
       <h1>Start a Quiz</h1>
-      <div className="form-group">
-        <label>Participant Name:</label>
-        <input
-          type="text"
-          className="form-control"
-          value={participantName}
-          onChange={(e) => setParticipantName(e.target.value)}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Email:</label>
-        <input
-          type="email"
-          className="form-control"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Quiz ID:</label>
-        <input
-          type="text"
-          className="form-control"
-          value={quizID}
-          onChange={(e) => setQuizID(e.target.value)}
-          required
-        />
-      </div>
-      <button className="my-4 btn btn-primary" onClick={handleGetQuiz}>
-        Start Quiz
-      </button>
-      {message && <p>{message}</p>}
-      {quiz && (
-        <div>
-          <h2>{quiz.quizName}</h2>
-          <p>Time left: {timeLeft} seconds</p>
-          <ul>
+      <form onSubmit={handleSubmitAnswers}>
+        <div className="form-group">
+          <label>Participant Name:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={participantName}
+            onChange={(e) => setParticipantName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            className="form-control"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Quiz ID:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={quizID}
+            onChange={(e) => setQuizID(e.target.value)}
+            required
+          />
+        </div>
+        <button className="my-4 btn btn-primary" onClick={handleGetQuiz}>
+          Start Quiz
+        </button>
+        {message && <p>{message}</p>}
+        {quiz && (
+          <div>
+            <h2>{quiz.quizName}</h2>
             {quiz.questions.map((q, index) => (
-              <li key={index}>
-                <p>{q.questionText}</p>
-                <ul>
-                  {q.options.map((option, idx) => (
-                    <li key={idx}>
-                      <label>
-                        <input
-                          type="radio"
-                          name={`question-${index}`}
-                          value={option}
-                          checked={answers[index] === option}
-                          onChange={(e) =>
-                            handleAnswerChange(index, e.target.value)
-                          }
-                        />
-                        {option}
-                      </label>
-                    </li>
-                  ))}
-                </ul>
-              </li>
+              <div key={index}>
+                <table className="table rounded-3 overflow-hidden table-hover">
+                  <thead>
+                    <tr>
+                      <th>{q.questionText}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {q.options.map((option, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <div className="form-check">
+                            <input
+                              type="radio"
+                              className=" mx-3 form-check-input"
+                              name={`question-${index}`}
+                              value={option}
+                              checked={answers[index] === option}
+                              onChange={(e) =>
+                                handleAnswerChange(index, e.target.value)
+                              }
+                            />
+                            <label className="form-check-label">
+                              {option}
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ))}
-          </ul>
-          <button className="my-4 btn btn-primary" onClick={handleSubmitAnswers}>
-            Submit Answers
-          </button>
-        </div>
-      )}
-      {score && (
-        <div>
-          <h2>
-            Your Score: {score.score} out of {score.total}
-          </h2>
-        </div>
-      )}
+            <button className="my-4 btn btn-primary" type="submit">
+              Submit Answers
+            </button>
+          </div>
+        )}
+        {score && (
+          <div className="score-box text-white">
+            <h3>
+              Score: {score.score} out of {score.total}
+            </h3>
+          </div>
+        )}
+      </form>
     </div>
   );
 };

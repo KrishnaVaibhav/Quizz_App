@@ -9,7 +9,7 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [response, setResponse] = useState(null);
+
   console.log(useAuth());
 
   const handleSubmit = async (event) => {
