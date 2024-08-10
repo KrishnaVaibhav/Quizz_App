@@ -165,9 +165,7 @@ const ParticipantQuiz = () => {
                                 handleAnswerChange(index, e.target.value)
                               }
                             />
-                            <label className="form-check-label">
-                              {option}
-                            </label>
+                            <label className="form-check-label">{option}</label>
                           </div>
                         </td>
                       </tr>
@@ -189,6 +187,7 @@ const ParticipantQuiz = () => {
           </div>
         )}
       </form>
+      <p className="text-center">All Copyrights Reserved @2024</p>
     </div>
   );
 };

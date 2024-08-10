@@ -16,7 +16,6 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Deploying to S3...
-      - aws s3 sync build/ s3://krishnaquizapp1 --delete
  
 artifacts:
   files:
